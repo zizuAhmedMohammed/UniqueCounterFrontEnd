@@ -1,12 +1,12 @@
-import './App.css';
-import Header from './components/Navbar';
-import Container from 'react-bootstrap/esm/Container';
-import Row from 'react-bootstrap/esm/Row';
-import Form from 'react-bootstrap/Form';
-import React, { useState } from 'react';
-import axios from 'axios';
-import Background from './assets/pic.jpg';
-import ResultCard from './components/ResultCard';
+import "./App.css";
+import Header from "./components/Navbar";
+import Container from "react-bootstrap/esm/Container";
+import Row from "react-bootstrap/esm/Row";
+import Form from "react-bootstrap/Form";
+import React, { useState } from "react";
+import axios from "axios";
+import Background from "./assets/pic.jpg";
+import ResultCard from "./components/ResultCard";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -26,18 +26,18 @@ function App() {
     setUploaded(true);
     setIsLoading(true);
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    formData.append("file", selectedFile);
 
     const waitTime = 10000;
     const handleError = (error) => {
       // this makes sure that the FAIL output isn't repeated in the case when there's a failure before the timeout
       if (!error.handled) {
         if (error.timedout) {
-          console.log('TIMEDOUT', error.timedout);
+          console.log("TIMEDOUT", error.timedout);
           alert(error.timedout);
           setIsLoading(false);
         } else {
-          console.log('FAIL!', error.message);
+          console.log("FAIL!", error.message);
           alert(error.message);
           setIsLoading(false);
           error.handled = true;
@@ -48,11 +48,11 @@ function App() {
     const makeRequest = async () => {
       try {
         await axios({
-          method: 'post',
-          mode: 'cors',
-          url: 'https://unique-counter.herokuapp.com/count',
+          method: "post",
+          mode: "cors",
+          url: "localhost:5000/count",
           data: formData,
-          headers: { 'Content-Type': 'application/json' },
+          headers: { "Content-Type": "application/json" },
         })
           .then((response) => {
             return response;
@@ -66,7 +66,7 @@ function App() {
       }
     };
     const timer = new Promise((_, reject) =>
-      setTimeout(reject, waitTime, { timedout: 'request taking a long time' })
+      setTimeout(reject, waitTime, { timedout: "request taking a long time" })
     );
     try {
       await Promise.race([makeRequest(), timer]);
@@ -103,34 +103,34 @@ function App() {
 
   if (!uploaded) {
     return (
-      <div className='App' style={{ minHeight: '100vh' }}>
+      <div className="App" style={{ minHeight: "100vh" }}>
         <Header />
 
         <Row
           style={{
             backgroundImage: `url(${Background})`,
-            backgroundSize: 'cover',
-            opacity: '1',
+            backgroundSize: "cover",
+            opacity: "1",
           }}
         >
-          <div style={{ backgroundColor: '#225470', opacity: '0.81' }}>
-            <Container style={{ height: '95vh' }}>
+          <div style={{ backgroundColor: "#225470", opacity: "0.81" }}>
+            <Container style={{ height: "95vh" }}>
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  marginTop: '115px',
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  marginTop: "115px",
                 }}
               >
                 <div>
-                  <h2 style={{ color: 'white' }}>
+                  <h2 style={{ color: "white" }}>
                     Upload your documents ( PDF, docx and Excel only ) to get an
                     instant count of the number of words in your document.
                   </h2>
                 </div>
                 <div>
-                  <h3 style={{ color: 'white', marginTop: '30px' }}>
+                  <h3 style={{ color: "white", marginTop: "30px" }}>
                     Please note that we don't store any documents you upload
                     here..
                   </h3>
@@ -139,42 +139,42 @@ function App() {
 
               <div
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '55%',
-                  alignContent: 'space-between',
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "55%",
+                  alignContent: "space-between",
                 }}
               >
-                <h1 style={{ color: 'white' }}>Unique Words counter </h1>
+                <h1 style={{ color: "white" }}>Unique Words counter </h1>
                 <Form onSubmit={fetchLongRequest}>
                   <div
                     style={{
-                      marginBottom: '30px',
-                      fontSize: '1.5rem',
-                      color: 'white',
+                      marginBottom: "30px",
+                      fontSize: "1.5rem",
+                      color: "white",
                     }}
                   >
-                    Upload .pdf, .docx or .xlsx file{' '}
+                    Upload .pdf, .docx or .xlsx file{" "}
                   </div>
 
                   <div>
-                    <Form.Group name='file' controlId='file' className='mb-3'>
+                    <Form.Group name="file" controlId="file" className="mb-3">
                       <Form.Control
-                        name='file'
-                        type='file'
-                        size='lg'
+                        name="file"
+                        type="file"
+                        size="lg"
                         onChange={handleFileSelect}
                       />
                     </Form.Group>
                   </div>
 
                   <button
-                    type='submit'
-                    variant='primary'
-                    class='btn btn-outline-light'
-                    value='Upload File'
+                    type="submit"
+                    variant="primary"
+                    class="btn btn-outline-light"
+                    value="Upload File"
                   >
                     Submit
                   </button>
@@ -188,39 +188,39 @@ function App() {
   }
 
   return (
-    <div className='App' style={{ minHeight: '100vh' }}>
+    <div className="App" style={{ minHeight: "100vh" }}>
       <Header />
       <Row
         style={{
           backgroundImage: `url(${Background})`,
-          backgroundSize: 'cover',
-          opacity: '1',
+          backgroundSize: "cover",
+          opacity: "1",
         }}
       >
-        <div style={{ backgroundColor: '#225470', opacity: '0.81' }}>
+        <div style={{ backgroundColor: "#225470", opacity: "0.81" }}>
           <Container
             style={{
-              backgroundColor: '#225470',
-              height: '95vh',
-              opacity: '0.81',
+              backgroundColor: "#225470",
+              height: "95vh",
+              opacity: "0.81",
             }}
           >
             <div
               style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '100%',
-                alignContent: 'space-between',
-                color: 'white',
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+                alignContent: "space-between",
+                color: "white",
               }}
             >
               {isLoading ? (
                 <>
-                  <h1 style={{ color: 'white' }}>Please Wait </h1>
-                  <div class='spinner-border text-light' role='status'>
-                    <span class='sr-only'></span>
+                  <h1 style={{ color: "white" }}>Please Wait </h1>
+                  <div class="spinner-border text-light" role="status">
+                    <span class="sr-only"></span>
                   </div>
                 </>
               ) : (
@@ -233,9 +233,9 @@ function App() {
 
                     <div>
                       <button
-                        variant='primary'
-                        class='btn btn-outline-light'
-                        value='back  '
+                        variant="primary"
+                        class="btn btn-outline-light"
+                        value="back  "
                         onClick={() => {
                           setUploaded(false);
                           setWords();
