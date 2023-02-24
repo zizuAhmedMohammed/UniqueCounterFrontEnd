@@ -26,6 +26,14 @@ export default function Header() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">other docs</NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Contact us" id="basic-nav-dropdown">
+              <NavDropdown.Item href="https://www.linkedin.com/in/abdulaziz-ahmed-96a4b9224/">
+                Abdulaziz Ahmed
+              </NavDropdown.Item>
+              <NavDropdown.Item href="https://www.linkedin.com/in/eyerusalem-mesfin-778192224">
+                Eyerusalem Sileshi
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

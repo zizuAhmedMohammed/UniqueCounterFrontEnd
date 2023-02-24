@@ -24,6 +24,7 @@ function App() {
   const fetchLongRequest = async (event) => {
     event.preventDefault();
     setUploaded(true);
+
     setIsLoading(true);
     const formData = new FormData();
     formData.append("file", selectedFile);
@@ -50,7 +51,7 @@ function App() {
         await axios({
           method: "post",
           mode: "cors",
-          url: "localhost:5000/count",
+          url: "http://127.0.0.1:5000/count",
           data: formData,
           headers: { "Content-Type": "application/json" },
         })
